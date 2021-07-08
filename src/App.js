@@ -78,7 +78,7 @@ export default function App() {
     const {geom: {coordinates = []} = {}} = location;
 
     if (coordinates.length) {
-      map.flyTo(coordinates.reverse(), 14, {
+      map.flyTo([...coordinates].reverse(), 14, {
         duration: 2,
       });
     }
