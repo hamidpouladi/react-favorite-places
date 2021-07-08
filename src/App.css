@@ -1,0 +1,8 @@
+.leaflet-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.leaflet-top .leaflet-control {
+  margin-top: 80px;
+}

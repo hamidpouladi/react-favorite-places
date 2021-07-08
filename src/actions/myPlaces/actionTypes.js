@@ -1,0 +1,2 @@
+export const OPEN_MY_PLACES = 'OPEN_MY_PLACES';
+export const CLOSE_MY_PLACES = 'CLOSE_MY_PLACES';
