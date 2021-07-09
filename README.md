@@ -1,7 +1,7 @@
 # Favorite Places App
 
-A Favorite places app project created using react, redux, redux-saga, leafletjs,
-open street map and map.ir places api
+A Favorite places app project created using react, redux, redux-saga, styled
+components, leafletjs, open street map and map.ir places api
 
 ## demo link:
 

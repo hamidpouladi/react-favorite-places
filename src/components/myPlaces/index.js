@@ -1,4 +1,4 @@
-import {forwardRef, useContext} from 'react';
+import {forwardRef, useContext, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
@@ -45,6 +45,8 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function MyPlaces({open, onClose}) {
+  const [filterInput, setFilterInput] = useState('');
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
   const map = useContext(MapContext);
   const pins = useSelector(state => state.places.pins);
   const dispatch = useDispatch();
@@ -54,7 +56,14 @@ export default function MyPlaces({open, onClose}) {
       id: 'search-places',
       options: pins,
       getOptionLabel: option => option.title,
+      freeSolo: true,
+      onInputChange: (e, newValue) => setFilterInput(newValue),
     });
+
+  useEffect(() => {
+    setFilteredPlaces(groupedOptions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterInput]);
 
   const handleEditPlace = place => {
     dispatch(editPlace(place));
@@ -112,7 +121,7 @@ export default function MyPlaces({open, onClose}) {
       />
 
       <PlaceList
-        items={groupedOptions.length > 0 ? groupedOptions : pins}
+        items={filteredPlaces.length > 0 ? filteredPlaces : pins}
         onEdit={handleEditPlace}
         onDelete={handleRemovePlace}
         onItemClick={handleGoToLocation}

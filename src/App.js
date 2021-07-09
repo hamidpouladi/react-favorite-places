@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useRef} from 'react';
 import {v4 as uuid} from 'uuid';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -41,13 +41,10 @@ export default function App() {
   const {isOpenMyPlaces} = useSelector(state => state.myPlaces);
   const dispatch = useDispatch();
 
-  const handleAddNewPin = useCallback(
-    e => {
-      const newPin = {id: uuid(), ...e.latlng};
-      dispatch(addNewPin(newPin));
-    },
-    [dispatch],
-  );
+  const handleAddNewPin = e => {
+    const newPin = {id: uuid(), ...e.latlng};
+    dispatch(addNewPin(newPin));
+  };
 
   const handleCancelPlaceForm = () => {
     if (placeFormAction === 'add') {
